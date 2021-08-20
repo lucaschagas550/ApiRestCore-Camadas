@@ -38,6 +38,12 @@ namespace ApiRestCore
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
+            //suprimindo a validação da viewModel automatica para personalizar as mensagens de erros
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            
             services.ResolveDependencies();
         }
 
