@@ -36,14 +36,7 @@ namespace ApiRestCore
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
-            //suprimindo a validação da viewModel automatica para personalizar as mensagens de erros
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
-            
+            services.WebApiConfig();
             services.ResolveDependencies();
         }
 
@@ -60,8 +53,7 @@ namespace ApiRestCore
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvcConfiguration();
         }
     }
 }
