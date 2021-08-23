@@ -2,6 +2,7 @@
 using ApiRestCore.Business.Models;
 using ApiRestCore.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ApiRestCore.Controllers
 {
+    //[Authorize]
     [Route("api/produtos")]
     public class ProdutosController : MainController
     {
@@ -152,7 +154,7 @@ namespace ApiRestCore.Controllers
 
             var imageDataByteArray = Convert.FromBase64String(arquivo);
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imgNome);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Imagens", imgNome);
 
             if (System.IO.File.Exists(filePath))
             {

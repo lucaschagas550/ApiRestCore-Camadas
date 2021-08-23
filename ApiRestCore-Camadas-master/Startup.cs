@@ -34,6 +34,8 @@ namespace ApiRestCore
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddIdentityConfig(Configuration);
+
             services.AddAutoMapper(typeof(Startup));
 
             services.WebApiConfig();
@@ -53,6 +55,7 @@ namespace ApiRestCore
                 app.UseHsts();
             }
 
+            app.UseAuthentication();   //sempre vir antes da autenticação do mvc
             app.UseMvcConfiguration();
         }
     }

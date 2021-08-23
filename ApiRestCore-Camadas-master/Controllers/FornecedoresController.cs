@@ -2,6 +2,7 @@
 using ApiRestCore.Business.Models;
 using ApiRestCore.ViewModels;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ApiRestCore.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     public class FornecedoresController : MainController
     {
