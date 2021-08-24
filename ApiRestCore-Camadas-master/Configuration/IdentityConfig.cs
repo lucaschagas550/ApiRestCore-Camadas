@@ -1,5 +1,6 @@
 ﻿using ApiRestCore.Data.Context;
 using ApiRestCore.Data.Identity;
+using ApiRestCore.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace ApiRestCore.Configuration
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                //.AddErrorDescriber<IdentityMensagensPortugues>()
+                .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
 
             //// JWT
