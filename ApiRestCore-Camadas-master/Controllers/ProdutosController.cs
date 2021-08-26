@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ApiRestCore.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/produtos")]
     public class ProdutosController : MainController
     {

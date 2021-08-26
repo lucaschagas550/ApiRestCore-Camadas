@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ApiRestCore.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     public class FornecedoresController : MainController
     {
