@@ -10,6 +10,20 @@ namespace ApiRestCore.Configuration
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            //Documentação para versionamento
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0); //V1.0
+                options.ReportApiVersions = true;
+            });
+
+            services.AddVersionedApiExplorer(options =>
+           {
+               options.GroupNameFormat = "'v'VVV";// VVV = 1.1.1 por exemplo
+               options.SubstituteApiVersionInUrl = true;
+           });
+
             //suprimindo a validação da viewModel automatica para personalizar as mensagens de erros
             services.Configure<ApiBehaviorOptions>(options =>
             {

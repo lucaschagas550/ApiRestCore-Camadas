@@ -9,10 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ApiRestCore.Controllers
+namespace ApiRestCore.Controllers.V1
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class FornecedoresController : MainController
     {
         //resolver conflitos no DependecyInjectioConfig
@@ -67,17 +68,6 @@ namespace ApiRestCore.Controllers
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<FornecedorViewModel>> Atualizar(Guid id, FornecedorViewModel fornecedorViewModel)
         {
-
-            if (User.Identity.IsAuthenticated)
-            {
-                var userName = User.Identity.Name;
-            }
-
-            if(UsuarioAutenticado)
-            {
-                var userName = UsuarioId.
-            }
-
             if (id != fornecedorViewModel.Id)
             {
                 NotificarErro("O id informado não é o mesmo que foi passado na query");
