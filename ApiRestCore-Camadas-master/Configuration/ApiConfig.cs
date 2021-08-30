@@ -16,6 +16,7 @@ namespace ApiRestCore.Configuration
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            //CORS ele ja vem desabilitado de origem, abaixo existe uma politica para relaxar essa segurança
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
@@ -24,7 +25,18 @@ namespace ApiRestCore.Configuration
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
+
+
+                options.AddPolicy("Production",
+                    builder =>
+                        builder
+                            .WithMethods("GET")
+                            .WithOrigins("http://desenvolvedor.io")
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            //.WithHeaders(HeaderNames.ContentType, "x-custom-header")
+                            .AllowAnyHeader());
             });
+
 
             return services;
         }
@@ -34,7 +46,7 @@ namespace ApiRestCore.Configuration
             app.UseHttpsRedirection();
             app.UseCors("Development");
             app.UseMvc();
-            
+
             return app;
         }
 

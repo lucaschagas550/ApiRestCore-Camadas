@@ -47,11 +47,14 @@ namespace ApiRestCore
         {
             if (env.IsDevelopment())
             {
+                //sempre chamar o CORS antes do UseMvcConfiguration
+                app.UseCors("Development");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseCors("Production");
                 app.UseHsts();
             }
 
