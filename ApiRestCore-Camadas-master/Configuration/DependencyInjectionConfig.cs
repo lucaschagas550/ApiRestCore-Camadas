@@ -6,6 +6,8 @@ using ApiRestCore.Data.Repository;
 using ApiRestCore.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ApiRestCore.Configuration
 {
@@ -26,6 +28,8 @@ namespace ApiRestCore.Configuration
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Para aplicação toda, não confunde os usuarios
             services.AddScoped<IUser, AspNetUser>();
 
+
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             return services;
         }
     }
