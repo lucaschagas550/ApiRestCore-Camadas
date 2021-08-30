@@ -2,7 +2,10 @@
 using ApiRestCore.Data.Context;
 using ApiRestCore.Extensions;
 using AutoMapper;
+using HealthChecks.UI.Client;
+
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
@@ -36,7 +39,11 @@ namespace ApiRestCore
 
             services.AddSwaggerConfig();
 
-            services.AddLoggingConfiguration();
+            services.AddLoggingConfiguration(Configuration);
+
+            services.AddHealthChecks();
+
+            services.AddHealthChecksUI();
 
             services.ResolveDependencies();
         }
