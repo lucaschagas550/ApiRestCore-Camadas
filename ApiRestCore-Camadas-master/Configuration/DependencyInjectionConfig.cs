@@ -3,6 +3,7 @@ using ApiRestCore.Business.Notificacoes;
 using ApiRestCore.Business.Services;
 using ApiRestCore.Data.Context;
 using ApiRestCore.Data.Repository;
+using ApiRestCore.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,7 +23,8 @@ namespace ApiRestCore.Configuration
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IFornecedorService, FornecedorService>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Para aplicação toda, não confunde os usuarios
+            services.AddScoped<IUser, AspNetUser>();
 
             return services;
         }

@@ -25,7 +25,8 @@ namespace ApiRestCore.Controllers
                                       IFornecedorService fornecedorService,
                                       IEnderecoRepository enderecoRepository,
                                       INotificador notificador,
-                                      IMapper mapper) : base(notificador)
+                                      IMapper mapper,
+                                      IUser user) : base(notificador, user)
         {
             _fornecedorRepository = fornecedorRepository;
             _fornecedorServices = fornecedorService;
@@ -66,6 +67,17 @@ namespace ApiRestCore.Controllers
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<FornecedorViewModel>> Atualizar(Guid id, FornecedorViewModel fornecedorViewModel)
         {
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userName = User.Identity.Name;
+            }
+
+            if(UsuarioAutenticado)
+            {
+                var userName = UsuarioId.
+            }
+
             if (id != fornecedorViewModel.Id)
             {
                 NotificarErro("O id informado não é o mesmo que foi passado na query");
