@@ -1,21 +1,13 @@
 ﻿using ApiRestCore.Configuration;
 using ApiRestCore.Data.Context;
+using ApiRestCore.Extensions;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiRestCore
 {
@@ -44,6 +36,8 @@ namespace ApiRestCore
 
             services.AddSwaggerConfig();
 
+            services.AddLoggingConfiguration();
+
             services.ResolveDependencies();
         }
 
@@ -64,9 +58,14 @@ namespace ApiRestCore
             }
 
             app.UseAuthentication();   //sempre vir antes da autenticação do mvc
+
+            app.UseMiddleware<ExceptionMiddleware>(); // todos erros caem aqui
+
             app.UseMvcConfiguration();
 
             app.UseSwaggerConfig(provider);
+
+            app.UseLoggingConfiguration();
         }
     }   
 }
