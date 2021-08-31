@@ -43,7 +43,7 @@ namespace ApiRestCore
 
             services.AddHealthChecks();
 
-            services.AddHealthChecksUI();
+            //services.AddHealthChecksUI();
 
             services.ResolveDependencies();
         }
