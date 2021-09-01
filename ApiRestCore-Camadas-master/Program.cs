@@ -19,7 +19,7 @@ namespace ApiRestCore
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseSetting("DetailedErrors", "true");
+                .UseStartup<Startup>();
+                //.UseSetting("DetailedErrors", "true");
     }
 }
